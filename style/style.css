@@ -1,0 +1,364 @@
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+
+:root{
+    font-size: 16px;
+    --max-text-length: 100ch;
+    --max-height: 1.5;
+    --font: Knife;
+    --font-text: Mq;
+    --text-color: #080808;
+}
+
+@font-face {
+    font-family: Knife;
+    src:url(../font/behance-65fed0d854938.otf);
+}
+
+@font-face {
+    font-family: Mq;
+    src:url(../font/Burlesk-Regular.ttf);
+}
+
+@keyframes jiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(2deg); }
+    50% { transform: rotate(-2deg); }
+    75% { transform: rotate(2deg); }
+  }
+  
+  .jiggle {
+    display: inline-block;
+    animation: jiggle 0.6s infinite;
+  }
+
+body {
+    background-image: url(../pics/textures/11.png);
+    background-repeat:repeat;
+    position: relative;
+    z-index: 0;
+    margin: 0;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #3c2431;
+    opacity: 0.95;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.ticker-container {
+    overflow: hidden;
+    width: 100%;
+    padding: 40px 0;
+  }
+  
+  .ticker {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  
+  .ticker-content {
+    display: flex;
+    animation: ticker-scroll 50s linear infinite;
+  }
+  
+  .ticker-content span {
+    font-size: 4rem;
+    font-family: Knife, sans-serif;
+    color: #cdd3d1;
+    margin-right: 2rem;
+  }
+
+
+  @keyframes ticker-scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+
+nav{
+    z-index: 1;
+    width:100%;
+    opacity: 0.6;
+    padding: 1% 0;
+    margin: 0;
+    font-family: var(--font-text);
+    font-size: 3rem;
+    line-height: var(--max-height);
+    background-color: #2D5633;
+}
+
+nav ul{
+    display: grid;
+    margin:1%;
+    padding: 0;
+    list-style: none;
+    grid-template-columns: repeat(3,1fr);
+}
+
+nav li{
+    text-align:center;
+}
+
+
+nav ul li a{
+    color:white;
+    text-decoration: none;
+    transition: transform 0.2s, text-decoration 0.2s;
+}
+
+main{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-content:center;
+    gap: 50px;
+    padding-inline: 5%;
+}
+
+#button{
+    font-size:large;
+    background-color: #1fdaf700;
+}
+
+@media screen and (max-width: 600px) {
+    main {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+    
+    p {
+        font-size: 1.5rem;
+        padding: 10px;
+        font-family: Mq;
+    }
+    
+    fieldset:first-of-type {
+        grid-template-columns: 1fr;
+    }
+    
+    nav ul {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+
+
+h1{
+    font-family: var(--font);
+    font-size: 4rem;
+    color: var(--text-color);
+}
+
+h2{
+    font-family: var(--font);
+    font-size: 3rem;
+    color: var(--text-color);
+    background-color: #caa802b1;
+    text-align: center;
+        margin: 0;
+}
+#About h2{
+background-image: url("../pics/textures/5.png");
+}
+
+#Projects h2{
+    background-image: url("../pics/textures/13.png");
+}
+
+#CV h2{
+    background-image: url("../pics/textures/7.png");
+}
+
+h3{
+    font-family: var(--font);
+    font-size: 1.7rem;
+    color: var(--text-color);
+}
+
+p,li{
+    margin: 5%;
+    font-size: 3rem;
+    padding-top: 1%;
+    color: #2a2530;
+}
+
+article li::marker {
+    font-size: 0.8em;
+    font-family: Mq;
+    background-image: url("../pics/me.png");
+  }
+
+img{
+    max-width: 100%;
+}
+
+#About {
+    display: flex;
+    flex-direction: column;
+    min-height: 400px; /* Set the minimum height as necessary */
+}
+
+#About figure {
+    margin: 0; /* Remove standard Figure indentation */
+    margin-top: auto; /* Press to the bottom */
+    width: 100%;
+    position: relative;
+}
+
+#About figure img {
+    width: 100%;
+    display: block; /* Remove the gap under the image */
+}
+
+article a{
+    color:#caa902; 
+}
+
+
+article a:hover{
+    color:#c0b928;
+}
+
+#CV a{
+    font-size: 2rem;
+    margin-bottom: 20rem;
+}
+main,
+caption{
+    font-family: var(--font-text);
+    line-height: var(--max-height);
+    color: var(--text-color);
+}
+
+article{
+    max-width:var(--max-text-length);
+    border-radius: 4%;
+    background-color: #9f8878c4;
+    padding: 0;
+    overflow: hidden;
+    /* box-shadow:
+                    -1px -1px 0 rgb(0, 0, 0),  
+                    10px -10px 0 rgb(155, 79, 25),
+                    -1px 1px 0 rgb(0, 0, 0),
+                    1px 1px 0 rgb(0, 0, 0);*/
+}
+
+.article-hover {
+    transition: transform 0.2s;
+}
+
+.article-hover:hover {
+    transform: scale(1.05);
+}
+
+.nav-hover {
+    text-decoration: underline;
+    transform: scale(1.5);
+}
+
+figure{
+    width: fit-content;
+    position: relative;
+}
+
+figcaption{
+    position:absolute;
+    background-color: #f6f4d2;
+    border-radius: 20%;
+    font-family: var(--font-text);
+    font-size: 2rem;
+    left: 25%;
+    width:50%;
+    text-align: center;
+    caption-side: bottom;
+    line-height: var(--max-height);
+    color: var(--text-color);
+    top: 0;
+}
+
+
+h1,
+h2,
+h3{
+    color: #d8c2d7;
+    width:100%;
+}
+
+fieldset{
+    background-color:var(--bcolor);
+}
+
+a:hover{
+    color:#b57030;
+}
+
+a:active{
+    color:#4b0404;
+}
+
+.mark{
+	background-image: url(../);
+	font-weight: bold;
+    font-family: var(--font);
+	padding: 0 1%;
+	display: inline-block;
+}
+
+.markp{
+    background-color: #fffddb;
+    font-size: 1.5rem;
+}
+
+#me {
+    transition: transform 0.3s ease;
+    cursor: url("../assets/Pretzel\ &\ Croissant\ 3D--pointer--SweezyCursors..cur"), pointer;
+}
+
+  
+  .dot {
+    opacity: 0;
+    animation: dots 1.5s infinite;
+    color:#caa902;
+  }
+  
+  .dot:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+  
+  .dot:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+  
+  .dot:nth-child(4) {
+    animation-delay: 0.9s;
+  }
+  
+  @keyframes dots {
+    0% { opacity: 0; }
+    30% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+
+#social{
+    justify-content:center;
+    list-style: none; padding: 0; margin: 0; display: flex; gap: 10px; align-items: center;
+}
+#social img{
+    width: 60px; height: 60px;
+}
