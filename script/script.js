@@ -40,4 +40,16 @@ document.addEventListener("DOMContentLoaded", () => {
           img.style.transform = `scaleX(${scaleX}) scaleY(${scaleY})`;
         }
       });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const cvImage = document.getElementById("cv");
+        const pages = ["pics/Seite-1.png", "pics/Seite-2.png"];
+        let currentPage = 0;
+      
+        cvImage.addEventListener("click", () => {
+          currentPage = (currentPage + 1) % pages.length;
+          cvImage.src = pages[currentPage];
+        });
+      });
+      
 });

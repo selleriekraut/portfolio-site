@@ -234,9 +234,22 @@ article a:hover{
     color:#c0b928;
 }
 
+#nexum a{
+    color:#5c3b80; 
+}
+
+#nexum a:hover{
+    color:#7347a6; 
+}
+
 #CV a{
     font-size: 2rem;
     margin-bottom: 20rem;
+}
+
+#CV img{
+    width: 100%;
+    background-color: #FFFFFF;
 }
 main,
 caption{
