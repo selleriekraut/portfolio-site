@@ -200,7 +200,6 @@ p,li{
 article li::marker {
     font-size: 0.8em;
     font-family: Mq;
-    background-image: url("../pics/me.png");
   }
 
 img{
@@ -223,6 +222,31 @@ img{
 #About figure img {
     width: 100%;
     display: block; /* Remove the gap under the image */
+}
+
+#me {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+    cursor: url("../assets/Pretzel\ &\ Croissant\ 3D--pointer--SweezyCursors..cur"), pointer;
+}
+
+#text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    transition: opacity 0.2s ease;
+}
+
+/* Hide text image when hovering over the figure container */
+#About figure:hover #text {
+    opacity: 0;
+}
+
+/* Make sure the text image doesn't interfere with mouse events */
+#text {
+    pointer-events: none;
 }
 
 article a{
@@ -253,7 +277,7 @@ article a:hover{
 
 #CV img{
     width: 100%;
-    background-color: #FFFFFF;
+    margin-top: 4%;
 }
 main,
 caption{
@@ -265,7 +289,7 @@ caption{
 article{
     max-width:var(--max-text-length);
     border-radius: 4%;
-    background-color: #9f8878c4;
+    background-color: #9f887894;
     padding: 0;
     overflow: hidden;
     /* box-shadow:
@@ -339,11 +363,6 @@ a:active{
 .markp{
     background-color: #fffddb;
     font-size: 1.5rem;
-}
-
-#me {
-    transition: transform 0.3s ease;
-    cursor: url("../assets/Pretzel\ &\ Croissant\ 3D--pointer--SweezyCursors..cur"), pointer;
 }
 
   
