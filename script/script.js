@@ -1,55 +1,76 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const articleBlocks = document.querySelectorAll('main article');
+  // Ticker content generation
+  const message = "welcome to my PORTFOLIO*";
+  const content = document.querySelector(".ticker-content");
+  const spans = Array.from(
+    { length: 10 },
+    () => `<span>${message}</span>`
+  ).join("");
+  content.innerHTML = spans + spans;
 
-    articleBlocks.forEach(article => {
-        article.classList.add('article-hover');
-        });
+  //get fatter!
+  const img = document.getElementById("me");
+  let scaleX = 1;
 
-    const navLinks = document.querySelectorAll('nav ul li');
-    navLinks.forEach(link => {
-        link.addEventListener('mouseover', () => {
-            link.classList.add('nav-hover');
-        });
-        
-        link.addEventListener('mouseout', () => {
-            link.classList.remove('nav-hover');
-        });
+  img.addEventListener("click", (event) => {
+    event.stopPropagation(); // prevent document click from firing
+    scaleX += 0.1;
+    img.style.transform = `scaleX(${scaleX})`;
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!img.contains(event.target)) {
+      scaleX = 1;
+      img.style.transform = `scaleX(${scaleX})`;
+    }
+  });
+
+  // CV Modal functionality
+  initCVModal();
+  // CV Modal functions
+  const cvImageSrc = "pics/AndreyKrasavinCV.png";
+  function initCVModal() {
+    const cvImage = document.getElementById("cv");
+    const modal = document.getElementById("cvModal");
+    const closeBtn = document.querySelector(".modal-close");
+
+    // Open modal when CV image is clicked
+    cvImage.addEventListener("click", () => {
+      openCVModal();
     });
 
-    const message = "welcome to my PORTFOLIO*";
-    const content = document.querySelector('.ticker-content');
+    // Close modal when clicking close button
+    closeBtn.addEventListener("click", () => {
+      closeCVModal();
+    });
 
-    const spans = Array.from({ length: 10 }, () => `<span>${message}</span>`).join("");
-    content.innerHTML = spans + spans;
+    // Close modal when clicking outside of image
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeCVModal();
+      }
+    });
 
-    //get fatter!
-    const img = document.getElementById("me");
-    let scaleX = 1; // horizontal scale
-    let scaleY = 1; // vertical scale
-  
-    img.addEventListener("click", (event) => {
-        event.stopPropagation(); // prevent document click from firing
-        scaleX += 0.1;
-        img.style.transform = `scaleX(${scaleX}) scaleY(${scaleY})`;
-      });
-    
-      document.addEventListener("click", (event) => {
-        if (!img.contains(event.target)) {
-          scaleX = 1;
-          scaleY = 1;
-          img.style.transform = `scaleX(${scaleX}) scaleY(${scaleY})`;
-        }
-      });
+    // Close modal with Escape key
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("show")) {
+        closeCVModal();
+      }
+    });
+  }
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const cvImage = document.getElementById("cv");
-        const pages = ["pics/Seite-1.png", "pics/Seite-2.png"];
-        let currentPage = 0;
-      
-        cvImage.addEventListener("click", () => {
-          currentPage = (currentPage + 1) % pages.length;
-          cvImage.src = pages[currentPage];
-        });
-      });
-      
+  function openCVModal() {
+    const modal = document.getElementById("cvModal");
+    const modalImage = document.getElementById("modalImage");
+
+    modalImage.src = cvImageSrc;
+    modal.classList.add("show");
+    document.body.style.overflow = "hidden"; // Prevent scrolling
+  }
+
+  function closeCVModal() {
+    const modal = document.getElementById("cvModal");
+    modal.classList.remove("show");
+    document.body.style.overflow = "auto"; // Restore scrolling
+  }
 });
