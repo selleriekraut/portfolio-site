@@ -372,8 +372,9 @@ footer {
 
 .modal-close {
   position: absolute;
-  right: 30px;
-  color: var(--gold);
+  top: -1rem;
+  right: 1rem;
+  color: var(--text-color);
   font-size: 4rem;
   font-weight: bold;
   cursor: pointer;
@@ -431,10 +432,6 @@ footer {
     padding: 0.6rem;
   }
 
-  .ticker-content span {
-    font-size: 2rem;
-  }
-
   p,
   li {
     font-size: 3rem;
@@ -454,5 +451,11 @@ footer {
   #social img {
     width: 50px;
     height: 50px;
+  }
+
+  .modal-close {
+    font-size: 2rem;
+    top: -0.5rem;
+    right: 0rem;
   }
 }
