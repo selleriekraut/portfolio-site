@@ -282,7 +282,7 @@ img {
 #CV img {
   width: 100%;
   margin-top: 1rem;
-  cursor: pointer;
+  cursor:zoom-in;
 }
 
 /* Animations */
