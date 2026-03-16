@@ -203,12 +203,22 @@ a:hover {
 }
 
 #nexum a {
-  color: #5c3b80;
+  color: #5a387f;
+
   transition: color 0.2s ease;
 }
 
 #nexum a:hover {
   color: #7347a6;
+}
+
+#pal-ette a {
+  color: #53c22b9b;
+  transition: color 0.2s ease;
+}
+
+#pal-ette a:hover {
+  color: #61dbfb;
 }
 
 /* Images */
