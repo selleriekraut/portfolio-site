@@ -1,92 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>PORTFOLIO</title>
-    <meta name="author" content="Andrey">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta name="author" content="Andrey" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
     <script src="./script/script.js" defer></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <nav>
-        <ul>
-            <li><a href="#About">About me</a></li>
-            <li><a href="#Projects">Projects</a></li>
-            <li><a href="#CV">CV</a></li>
-            <li><a href="#Links">Links</a></li>
-        </ul>
+      <ul>
+        <li><a href="#About">About me</a></li>
+        <li><a href="#Projects">Projects</a></li>
+        <li><a href="#CV">CV</a></li>
+        <li><a href="#Links">Links</a></li>
+      </ul>
     </nav>
     <div class="ticker-container">
-        <div class="ticker">
-            <div class="ticker-content">
-            </div>
-        </div>
+      <div class="ticker">
+        <div class="ticker-content"></div>
+      </div>
     </div>
     <main>
-        <article id="About">
-            <h2>About me</h2>
-            <p>Hey! My name is Andrey, <br> I am a Media Informatics student actively seeking a <span
-                    class="jiggle">working student</span> position in Front-End Development, UI/UX Design, or related IT
-                fields</p>
-            <figure>
-                <img id="me" src="pics/me.png" alt="me" title="that's a me">
-                <img id="text" src="pics/tapOnMe.png" alt="tap on me!">
-            </figure>
-        </article>
-        <article id="Projects">
-            <h2>Projects</h2>
-            <ul>
-                <li><a href="index.html">This page</a></li>
-                <li id="nexum"><a href="https://nexum.f4.htw-berlin.de" target="_blank">Nexum</a> — a university
-                    project, free-to-use analogue of slido.com <br> <a href= "https://showtime.f4.htw-berlin.de/ss25/bachelor/b5-nexum/"target="_blank">if the link doesn't work</a></li>
-                <li id="pal-ette"><a href="https://github.com/selleriekraut/pal-ette" target="_blank">Pal-ette</a> — Color Palette Generator</li>
-                <li id="habit-tracker">Habit Tracker in development</li>
-                <li>more is coming<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></li>
-
+      <article id="About">
+        <h2>About me</h2>
+        <p>
+          Hey! I'm <span class="jiggle">Andrey</span> — a Media Informatics
+          graduate from HTW Berlin working at the intersection of front-end
+          development and interface design.
+        </p>
+        <p>
+          Recent work includes a color palette generator and a gamification
+          system for a digital maths platform (my bachelor's thesis).
+        </p>
+        <p>
+          <span class="jiggle">Open to</span> Front-End, UI Engineering, and
+          Working Student roles in Berlin.
+        </p>
+        <figure>
+          <img id="me" src="pics/me.png" alt="me" title="that's a me" />
+        </figure>
+      </article>
+      <article id="CV">
+        <h2>CV</h2>
+        <figure>
+          <div class="cv-frame">
+            <img
+              id="cv"
+              src="pics/AndreyKrasavinCV.png"
+              alt="Preview of my CV"
+            />
+            <img class="frame-overlay" src="pics/frame.png" alt="" />
+          </div>
+          <a href="AndreyKrasavinCV.pdf" target="_blank" download
+            >Click to download</a
+          >
+        </figure>
+      </article>
+      <article id="Projects">
+        <h2>Projects</h2>
+        <div class="carousel">
+          <button
+            type="button"
+            class="carousel-arrow carousel-prev"
+            aria-label="Previous project"
+          >
+            &#10094;
+          </button>
+          <div class="carousel-viewport">
+            <ul class="carousel-track">
+              <li class="carousel-slide" id="nexum">
+                <a href="https://nexum.f4.htw-berlin.de" target="_blank"
+                  >Nexum</a
+                >
+                — a university project, free-to-use analogue of slido.com
+                <br />
+                TOOLS: Vue.js + Tailwind CSS + PocketBase
+                <img src="pics/nexum.gif" alt="nexum" title="nexum" />
+                <a
+                  href="https://showtime.f4.htw-berlin.de/ss25/bachelor/b5-nexum/"
+                  target="_blank"
+                  >more about it here</a
+                >
+              </li>
+              <li class="carousel-slide">
+                Gamification system — for a digital maths platform <br />
+                TOOLS: Ruby on Rails
+                <img
+                  src="pics/dashboard.png"
+                  alt="dashboard for a digital maths platform"
+                  title="dashboard for a digital maths platform"
+                />
+              </li>
+              <li class="carousel-slide">
+                Superbrot — main menu design and programming in Unity <br />
+                TOOLS: Unity UI Toolkit
+                <img
+                  id="superbrot"
+                  src="pics/sb.png"
+                  alt="superbrot main menu"
+                  title="superbrot main menu"
+                />
+              </li>
+              <li class="carousel-slide" id="pal-ette">
+                <a
+                  href="https://github.com/selleriekraut/pal-ette"
+                  target="_blank"
+                  >Pal-ette</a
+                >
+                — Color Palette Generator <br />
+                TOOLS: React + TypeScript + Vite
+                <img
+                  src="pics/pal-ette.gif"
+                  alt="pal-ette functions"
+                  title="pal-ette"
+                />
+              </li>
+              <li class="carousel-slide">
+                <a href="index.html">This page</a>
+                <br />
+                TOOLS: HTML + CSS + JavaScript
+              </li>
+              <li class="carousel-slide" id="habit-tracker">
+                Habit Tracker — in development
+              </li>
+              <li class="carousel-slide">
+                more is coming<span class="dot">.</span
+                ><span class="dot">.</span><span class="dot">.</span>
+              </li>
             </ul>
-        </article>
-        <article id="CV">
-            <h2>CV</h2>
-            <figure>
-                <a href="AndreyKrasavinCV.pdf" target="_blank" download>Click to download</a>
-                <img id="cv" src="pics/AndreyKrasavinCV.png" alt="Preview of my CV">
-            </figure>
-        </article>
+          </div>
+          <button
+            type="button"
+            class="carousel-arrow carousel-next"
+            aria-label="Next project"
+          >
+            &#10095;
+          </button>
+        </div>
+      </article>
     </main>
     <footer id="Links">
-        <ul id="social">
-            <li>
-                <a href="https://www.linkedin.com/in/andrey-krasavin/" target="_blank" rel="noopener noreferrer">
-                    <img src="pics/icons8-linkedin-50.svg" alt="LinkedIn" width="30">
-                </a>
-            </li>
-            <li>
-                <a href="https://www.instagram.com/selleriekraut" target="_blank" rel="noopener noreferrer">
-                    <img src="pics/icons8-instagram-50.svg" alt="Instagram" width="30">
-                </a>
-            </li>
-            <li>
-                <a href="https://github.com/selleriekraut" target="_blank" rel="noopener noreferrer">
-                    <img src="pics/icons8-github-50.svg" alt="GitHub" width="30">
-                </a>
-            </li>
-            <li>
-                <a href="mailto:krossx6@gmail.com" target="_blank" rel="noopener noreferrer">
-                    <img src="pics/icons8-gmail-logo.svg" alt="Email" width="30">
-                </a>
-            </li>
-        </ul>
+      <ul id="social">
+        <li>
+          <a
+            href="https://www.linkedin.com/in/andrey-krasavin/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="pics/icons8-linkedin-50.svg" alt="LinkedIn" width="30" />
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.instagram.com/selleriekraut"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="pics/icons8-instagram-50.svg"
+              alt="Instagram"
+              width="30"
+            />
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://github.com/selleriekraut"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="pics/icons8-github-50.svg" alt="GitHub" width="30" />
+          </a>
+        </li>
+        <li>
+          <a
+            href="mailto:krossx6@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="pics/icons8-gmail-logo.svg" alt="Email" width="30" />
+          </a>
+        </li>
+      </ul>
     </footer>
-    
+
     <!-- Modal for CV viewing -->
     <div id="cvModal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <img id="modalImage" class="modal-image" src="" alt="CV">
-        </div>
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <img id="modalImage" class="modal-image" src="" alt="CV" />
+      </div>
     </div>
+  </body>
 </html>

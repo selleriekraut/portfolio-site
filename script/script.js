@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Ticker content generation
-  const message = "welcome to my PORTFOLIO*";
+  const message = "WELCOME TO MY PORTFOLIO";
   const content = document.querySelector(".ticker-content");
   const spans = Array.from(
     { length: 10 },
@@ -24,6 +24,21 @@ document.addEventListener("DOMContentLoaded", () => {
       img.style.transform = `scaleX(${scaleX})`;
     }
   });
+
+  // Projects carousel
+  const carouselTrack = document.querySelector(".carousel-track");
+  const carouselSlides = document.querySelectorAll(".carousel-slide");
+  const carouselPrev = document.querySelector(".carousel-prev");
+  const carouselNext = document.querySelector(".carousel-next");
+  let currentSlide = 0;
+
+  function goToSlide(index) {
+    currentSlide = (index + carouselSlides.length) % carouselSlides.length;
+    carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+  }
+
+  carouselPrev.addEventListener("click", () => goToSlide(currentSlide - 1));
+  carouselNext.addEventListener("click", () => goToSlide(currentSlide + 1));
 
   // CV Modal functionality
   initCVModal();
