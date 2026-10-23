@@ -2,11 +2,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // Ticker content generation
   const message = "WELCOME TO MY PORTFOLIO";
   const content = document.querySelector(".ticker-content");
-  const spans = Array.from(
-    { length: 10 },
-    () => `<span>${message}</span>`
-  ).join("");
-  content.innerHTML = spans + spans;
+  // Ticker is optional (currently commented out in index.html)
+  if (content) {
+    const spans = Array.from(
+      { length: 10 },
+      () => `<span>${message}</span>`
+    ).join("");
+    content.innerHTML = spans + spans;
+  }
 
   //get fatter!
   const img = document.getElementById("me");
@@ -39,6 +42,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   carouselPrev.addEventListener("click", () => goToSlide(currentSlide - 1));
   carouselNext.addEventListener("click", () => goToSlide(currentSlide + 1));
+
+  // Swing the CV frame once the mouse leaves it
+  const cvFrame = document.querySelector(".cv-frame");
+  cvFrame.addEventListener("mouseleave", () => {
+    cvFrame.classList.remove("swing");
+    void cvFrame.offsetWidth; // restart the animation if it's still running
+    cvFrame.classList.add("swing");
+  });
+  cvFrame.addEventListener("animationend", () => {
+    cvFrame.classList.remove("swing");
+  });
 
   // CV Modal functionality
   initCVModal();
