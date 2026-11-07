@@ -416,9 +416,10 @@ img {
 
 .project img {
   width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  object-position: top;
+  aspect-ratio: 16 / 9;
+  /* Show the whole screenshot; light bars fill any leftover space */
+  object-fit: contain;
+  background: #f4f4f2;
 }
 
 .project h3 {
