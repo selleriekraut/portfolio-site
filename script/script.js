@@ -28,21 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Projects carousel
-  const carouselTrack = document.querySelector(".carousel-track");
-  const carouselSlides = document.querySelectorAll(".carousel-slide");
-  const carouselPrev = document.querySelector(".carousel-prev");
-  const carouselNext = document.querySelector(".carousel-next");
-  let currentSlide = 0;
-
-  function goToSlide(index) {
-    currentSlide = (index + carouselSlides.length) % carouselSlides.length;
-    carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-  }
-
-  carouselPrev.addEventListener("click", () => goToSlide(currentSlide - 1));
-  carouselNext.addEventListener("click", () => goToSlide(currentSlide + 1));
-
   // Swing the CV frame once the mouse leaves it
   const cvFrame = document.querySelector(".cv-frame");
   cvFrame.addEventListener("mouseleave", () => {
@@ -54,52 +39,16 @@ document.addEventListener("DOMContentLoaded", () => {
     cvFrame.classList.remove("swing");
   });
 
-  // CV Modal functionality
-  initCVModal();
-  // CV Modal functions
-  const cvImageSrc = "pics/AndreyKrasavinCV.png";
-  function initCVModal() {
-    const cvImage = document.getElementById("cv");
-    const modal = document.getElementById("cvModal");
-    const closeBtn = document.querySelector(".modal-close");
+  // Enlarged CV in a <dialog>
+  const cvModal = document.getElementById("cvModal");
+  document
+    .querySelector(".cv-open")
+    .addEventListener("click", () => cvModal.showModal());
 
-    // Open modal when CV image is clicked
-    cvImage.addEventListener("click", () => {
-      openCVModal();
-    });
-
-    // Close modal when clicking close button
-    closeBtn.addEventListener("click", () => {
-      closeCVModal();
-    });
-
-    // Close modal when clicking outside of image
-    modal.addEventListener("click", (event) => {
-      if (event.target === modal) {
-        closeCVModal();
-      }
-    });
-
-    // Close modal with Escape key
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && modal.classList.contains("show")) {
-        closeCVModal();
-      }
-    });
-  }
-
-  function openCVModal() {
-    const modal = document.getElementById("cvModal");
-    const modalImage = document.getElementById("modalImage");
-
-    modalImage.src = cvImageSrc;
-    modal.classList.add("show");
-    document.body.style.overflow = "hidden"; // Prevent scrolling
-  }
-
-  function closeCVModal() {
-    const modal = document.getElementById("cvModal");
-    modal.classList.remove("show");
-    document.body.style.overflow = "auto"; // Restore scrolling
-  }
+  // Clicking the dimmed background (outside the image) closes it
+  cvModal.addEventListener("click", (event) => {
+    if (event.target === cvModal) {
+      cvModal.close();
+    }
+  });
 });

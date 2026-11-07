@@ -17,11 +17,11 @@
   /* Shrinks with screen height so each article fits in the viewport */
   --font-size-text: min(3rem, 4vh);
   --font-size-heading: 4.8rem;
+  --font-size-hero: clamp(4rem, 2rem + 5vw, 7.5rem);
 
   /* Colors */
   --color-green: #6c7b5a;
   --color-cream: #eae5c5;
-  --color-blue: #2f4e8e;
   --color-sky: #3177b1;
   --color-gold: #daaf4b;
   --color-gold-light: #eccc2a;
@@ -29,16 +29,18 @@
   --color-text: #343b40;
   --color-ink: #040001;
   --color-tape: #9b7b30;
-  --color-page-tint: #f0e7a168;
-  --color-nav-bg: #eae5c584;
+  --color-page-tint: #e9efdfb4;
+  --color-nav-bg: #eae5c538;
   --color-card-bg: #eae5c5c1;
   --color-backdrop: rgba(0, 0, 0, 0.8);
 
   /* Textures */
-  --texture-azulejo: url("../pics/azulejo.jfif");
-  --texture-paper: url("../textures/overlays/7.png");
-  --texture-crumpled: url("../textures/Bleached and Crumpled_10.png");
-  --texture-tape: url("../textures/Bleached and Crumpled_1.png");
+  --texture-azulejo: url("../pics/azulejo2.webp");
+  --texture-paper-nav: url("../textures/paper-nav.webp");
+  --texture-paper-card: url("../textures/paper-card.webp");
+  --texture-crumpled: url("../textures/crumpled.webp");
+  --texture-crumpled-full: url("../textures/crumpled-full.webp");
+  --texture-tape: url("../textures/tape.webp");
 
   /* Shapes */
   --radius-card: 1.4rem;
@@ -96,7 +98,7 @@
   }
 }
 
-/* CV frame swinging on its nail, see .cv-frame.swing */
+/* CV frame swinging on its "nail", see .cv-frame.swing */
 @keyframes swing {
   0% {
     transform: rotate(0deg);
@@ -130,15 +132,6 @@
   }
 }
 
-@keyframes zoomIn {
-  from {
-    transform: scale(0.5);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
 /* Page */
 body {
   margin: 0;
@@ -156,7 +149,7 @@ body::after {
   position: fixed;
   inset: 0;
   background-color: var(--color-page-tint);
-  opacity: 0.9;
+  opacity: 1;
   pointer-events: none;
   z-index: -1;
 }
@@ -164,11 +157,11 @@ body::after {
 /* Navigation */
 nav {
   width: 100%;
-  margin-bottom: 8rem;
+  margin-bottom: 5rem;
   padding: 1rem;
   font-family: var(--font-heading);
   background-color: var(--color-nav-bg);
-  background-image: var(--texture-paper);
+  background-image: var(--texture-paper-nav);
   background-size: 100%;
   background-position: 60% 80%;
   background-blend-mode: color-burn;
@@ -190,7 +183,8 @@ nav a {
   display: block;
   padding: 0.5rem;
   color: var(--color-green);
-  font-size: 4rem;
+  font-size: clamp(2rem, 1rem + 2.5vw, 3.5rem);
+  white-space: nowrap;
   text-decoration: none;
   transition: transform 0.2s ease, color 0.2s ease;
 }
@@ -200,10 +194,40 @@ nav a:hover {
   transform: scale(1.5);
 }
 
+/* Hero: name and role, the first thing on the page */
+.hero {
+  width: 60%;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  text-align: center;
+  border-radius: var(--radius-card);
+  background-color: var(--color-card-bg);
+  background-image: var(--texture-paper-card);
+  background-position: 80% 60%;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: var(--font-size-hero);
+  line-height: 1;
+  color: var(--color-green);
+}
+
+.hero h1,
+.hero-role {
+  text-wrap: balance;
+}
+
+.hero-role {
+  margin: 1.5rem 0 2rem;
+  padding: 0;
+}
+
 /* Main content */
 main {
   display: grid;
-  grid-template-columns: 1fr;
+  /* minmax(0, ...) stops wide content stretching the column */
+  grid-template-columns: minmax(0, 1fr);
   gap: 10rem;
   padding-inline: 5rem;
 }
@@ -214,8 +238,8 @@ article {
   margin: 0 auto;
   border-radius: var(--radius-card);
   background-color: var(--color-card-bg);
-  background-image: var(--texture-paper);
-  background-position: 10% 10%;
+  background-image: var(--texture-paper-card);
+  background-position: 60% 60%;
   overflow: hidden;
   transform: rotate(var(--card-tilt, 0deg));
   transition: transform 0.3s ease;
@@ -230,7 +254,6 @@ article:hover {
 #Projects {
   position: relative;
   overflow: visible;
-  background-position: 60% 10%;
 }
 
 #About {
@@ -325,8 +348,10 @@ img {
 
 /* Playful accents use Burlesk instead of the body font */
 .jiggle,
-#CV a,
-#Projects a {
+.button,
+.project h3,
+.project-link,
+.source-code-link {
   font-family: var(--font-accent);
   font-size: larger;
 }
@@ -339,7 +364,7 @@ img {
 
 .dot {
   opacity: 0;
-  color: var(--color-blue);
+  color: var(--color-green);
   animation: dots 1.5s infinite;
 }
 
@@ -355,64 +380,94 @@ img {
   animation-delay: 0.9s;
 }
 
-/* Projects carousel */
-#superbrot {
-  width: 50%;
+/* Projects: grid of photo cards pinned inside the Projects card */
+#Projects {
+  width: 80%;
 }
 
-.carousel {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0 1rem 1rem;
-}
-
-.carousel-viewport {
-  flex: 1;
-  overflow: hidden;
-}
-
-.carousel-track {
-  display: flex;
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem;
   margin: 0;
+  padding: 2.5rem;
+  list-style: none;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 1rem 1rem 1.5rem;
+  font-size: 1rem;
+  background-color: var(--color-white);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transform: rotate(-1deg);
+  transition: transform 0.3s ease;
+}
+
+.project:nth-child(even) {
+  transform: rotate(1deg);
+}
+
+.project:hover {
+  transform: rotate(0deg) scale(1.03);
+}
+
+.project img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+}
+
+.project h3 {
+  margin: 1rem 0 0.25rem;
+  font-size: max(1.4rem, 0.9 * var(--font-size-text));
+  line-height: 1.2;
+  color: var(--color-green);
+}
+
+.project p {
+  margin: 0 0 1rem;
+  padding: 0;
+  font-size: max(1rem, 0.6 * var(--font-size-text));
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 1rem;
   padding: 0;
   list-style: none;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.carousel-slide {
-  flex: 0 0 100%;
-  width: 100%;
+.tags li {
   margin: 0;
-}
-
-.carousel-slide img {
-  max-height: 50vh;
-  width: auto;
-  margin-inline: auto;
-}
-
-.carousel-arrow {
-  flex: 0 0 auto;
-  width: 3.5rem;
-  height: 3.5rem;
-  border: none;
-  border-radius: 50%;
-  background-color: var(--color-green);
+  padding: 0.2rem 0.6rem;
+  font-size: max(0.8rem, 0.45 * var(--font-size-text));
   color: var(--color-white);
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  background-color: var(--color-green);
+  border-radius: var(--radius-small);
 }
 
-.carousel-arrow:hover {
-  background-color: var(--color-cream);
-  transform: scale(1.1);
+/* Card links, pushed to the bottom so they line up across a row */
+.project-link,
+.source-code-link {
+  margin-top: auto;
+  align-self: flex-start;
+  font-size: max(1.2rem, 0.7 * var(--font-size-text));
 }
 
-.carousel-arrow:active {
-  transform: scale(0.95);
+.project-link + .source-code-link {
+  margin-top: 0.25rem;
+}
+
+.project-note {
+  margin-top: 0;
+  text-align: center;
+  font-size: max(1rem, 0.6 * var(--font-size-text));
 }
 
 #CV {
@@ -424,6 +479,7 @@ img {
 #CV h2 {
   padding: calc(1.5rem + 0.1em) 0 calc(1.5rem - 0.1em);
   border-radius: var(--radius-card);
+  background-image: var(--texture-crumpled-full);
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: 100% 40%;
@@ -433,11 +489,12 @@ img {
   text-align: center;
 }
 
-#CV a {
+/* Crumpled-paper button (CV download) */
+.button {
   display: inline-block;
-  margin: 1.7rem 0;
   padding: 1rem 2.5rem;
-  font-size: var(--font-size-text);
+  /* Burlesk runs small, so a bit larger than body text */
+  font-size: calc(1.2 * var(--font-size-text));
   color: var(--color-white);
   text-decoration: none;
   background-color: var(--color-green);
@@ -445,14 +502,33 @@ img {
   border-radius: var(--radius-small);
 }
 
-#CV a:hover {
+.button:hover {
+  color: var(--color-white);
   background-color: var(--color-ink);
+}
+
+#CV .button {
+  margin: 1.7rem 0;
 }
 
 #CV img {
   width: 100%;
   margin-top: 1rem;
+}
+
+/* The CV preview is a button so it also opens with the keyboard */
+.cv-open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
   cursor: zoom-in;
+}
+
+.cv-open:focus-visible {
+  outline: 3px solid var(--color-green);
+  outline-offset: 4px;
 }
 
 /* Frame height = viewport minus heading and download button,
@@ -487,60 +563,9 @@ img {
   pointer-events: none;
 }
 
-/* Ticker (disabled; uncomment together with the markup in index.html)
-@font-face {
-  font-family: Ticker;
-  src: url("../font/Subwayticker-3ZPz.otf");
-}
-
-@keyframes ticker-scroll {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.ticker-container {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  margin-bottom: 10rem;
-  margin-inline: auto;
-  aspect-ratio: 1705 / 475;
-  background-image: url(../cutouts/tickerMonitor2-cropped.png);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-.ticker {
-  position: absolute;
-  left: 6.6%;
-  top: 44.8%;
-  width: 86.8%;
-  height: 27.2%;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.ticker-content {
-  display: flex;
-  animation: ticker-scroll 80s linear infinite;
-}
-
-.ticker-content span {
-  font-size: clamp(0.9rem, 3.3vw, 4rem);
-  font-family: Ticker, Arial, sans-serif;
-  color: var(--color-gold);
-  margin-right: clamp(4rem, 12vw, 14rem);
-} */
-
 /* Footer: icons centred, picture on the right of the same row */
 footer {
+  margin-top: 5%;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -553,9 +578,6 @@ footer {
   justify-content: center;
   gap: 1rem;
   list-style: none;
-  border-radius: var(--radius-card);
-  background-color: var(--color-card-bg);
-  background-image: var(--texture-paper);
 }
 
 #social img {
@@ -583,29 +605,29 @@ footer figure {
   cursor: url("../assets/cursor1.cur"), pointer;
 }
 
-/* CV modal */
+/* CV modal (<dialog>) */
 .modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background-color: var(--color-backdrop);
+  width: 90vw;
+  max-width: none;
+  max-height: 100vh;
+  padding: 0;
+  border: none;
+  background: none;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.modal[open] {
   animation: fadeIn 0.3s ease;
 }
 
-.modal.show {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.modal::backdrop {
+  background-color: var(--color-backdrop);
 }
 
-.modal-content {
-  position: relative;
-  max-width: 90%;
-  max-height: 100%;
-  overflow-y: auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  animation: zoomIn 0.3s ease;
+/* No page scrolling behind the open CV */
+body:has(.modal[open]) {
+  overflow: hidden;
 }
 
 .modal-image {
@@ -615,17 +637,19 @@ footer figure {
   border-radius: var(--radius-small);
 }
 
+/* Fixed so it stays in view while the CV scrolls */
 .modal-close {
-  position: absolute;
-  top: -1rem;
+  position: fixed;
+  top: 0.5rem;
   right: 1rem;
-  z-index: 1001;
+  z-index: 1;
   padding: 0.5rem;
   border: none;
   background: none;
   color: var(--color-sky);
   font-size: 4rem;
   font-weight: bold;
+  line-height: 1;
   cursor: pointer;
   transition: color 0.2s ease;
 }
@@ -634,27 +658,127 @@ footer figure {
   color: var(--color-gold-light);
 }
 
-/* Responsive design */
+/* Responsive design: phones and small tablets */
 @media screen and (max-width: 768px) {
+  /* Phone-sized type and a gentler tilt */
+  :root {
+    --font-size-text: clamp(1.05rem, 4.5vw, 1.4rem);
+    --font-size-heading: clamp(2.5rem, 12vw, 3.5rem);
+    --font-size-hero: clamp(3rem, 14vw, 4.5rem);
+    --radius-card: 1rem;
+    --tilt: 1deg;
+  }
+
+  /* Tape, tilt and the widening photo must not cause sideways scrolling */
+  body {
+    overflow-x: clip;
+  }
+
   .ticker-container {
     display: none;
   }
 
+  /* Nav: 2x2 grid instead of four stacked giant links */
+  nav {
+    margin-bottom: 3rem;
+    padding: 0.5rem;
+  }
+
   nav ul {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0;
+  }
+
+  nav a {
+    font-size: 1.75rem;
+    white-space: nowrap;
+  }
+
+  nav a:hover {
+    transform: scale(1.15);
   }
 
   main {
-    padding: 0.6rem;
+    gap: 4rem;
+    padding-inline: 1rem;
+  }
+
+  article {
+    width: 100%;
+  }
+
+  /* No zoom on tap, it would push the card past the screen edge */
+  article:hover {
+    transform: rotate(0deg);
+  }
+
+  /* Smaller tape that stays inside the screen */
+  #About::before,
+  #About::after,
+  #Projects::before,
+  #Projects::after {
+    top: -10px;
+    width: 80px;
+    height: 24px;
+  }
+
+  #About::before,
+  #Projects::before {
+    left: -12px;
+  }
+
+  #About::after,
+  #Projects::after {
+    right: -12px;
+  }
+
+  h2 {
+    padding-block: 1rem;
+  }
+
+  #CV h2 {
+    padding: calc(1rem + 0.1em) 0 calc(1rem - 0.1em);
   }
 
   p,
   li {
-    font-size: 3rem;
-    padding: 10px;
+    margin: 0.75rem 1rem;
+    padding: 0;
   }
 
+  /* Projects: one card per row */
+  #Projects {
+    width: 100%;
+  }
+
+  .project-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+
+  /* CV frame: use the small viewport height so browser bars don't cut it off */
+  .cv-frame {
+    width: min(100%, calc((100svh - 12rem) * 758 / 854));
+  }
+
+  .button {
+    padding: 0.75rem 1.5rem;
+  }
+
+  #CV .button {
+    margin: 1rem 0;
+  }
+
+  .hero {
+    width: 100%;
+    padding: 2rem 1rem;
+  }
+
+  /* Footer: icons, then the photo, centred and stacked */
   footer {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
     padding: 1rem;
   }
 
@@ -663,18 +787,51 @@ footer figure {
   }
 
   #social {
-    display: inline-block;
-    gap: 0;
+    grid-column: 1;
+    flex-wrap: wrap;
+    justify-self: center;
+    gap: 1.25rem;
+    padding: 0.75rem 1.25rem;
+  }
+
+  /* The icons are <li>s, so drop the paragraph spacing from "p, li" */
+  #social li {
+    margin: 0;
   }
 
   #social img {
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
+  }
+
+  footer figure {
+    grid-column: 1;
+    justify-self: center;
+    margin: 0;
+  }
+
+  #me {
+    width: min(60vw, 240px);
+    transform-origin: center;
   }
 
   .modal-close {
-    top: -0.5rem;
-    right: 0;
-    font-size: 2rem;
+    font-size: 2.5rem;
+  }
+}
+
+/* Respect the system "reduce motion" setting: no endless or swinging animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* The dots animation ends invisible, so show them still */
+  .dot {
+    opacity: 1;
   }
 }

@@ -3,8 +3,30 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>PORTFOLIO</title>
-    <meta name="author" content="Andrey" />
+    <title>Andrey Krasavin — Front-End Developer</title>
+    <meta name="author" content="Andrey Krasavin" />
+    <meta
+      name="description"
+      content="Andrey Krasavin, front-end developer and UI engineer in Berlin. Projects, CV and contact."
+    />
+    <!-- Link previews (LinkedIn, WhatsApp, ...) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Andrey Krasavin — Front-End Developer" />
+    <meta
+      property="og:description"
+      content="Andrey Krasavin, front-end developer and UI engineer in Berlin. Projects, CV and contact."
+    />
+    <meta
+      property="og:url"
+      content="https://selleriekraut-portfolio-site.vercel.app/"
+    />
+    <meta
+      property="og:image"
+      content="https://selleriekraut-portfolio-site.vercel.app/pics/og-image.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="stylesheet" href="style/style.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <script src="./script/script.js" defer></script>
@@ -19,12 +41,11 @@
         <li><a href="#Links">Links</a></li>
       </ul>
     </nav>
-    <!-- <div class="ticker-container">
-      <div class="ticker">
-        <div class="ticker-content"></div>
-      </div>
-    </div> -->
     <main>
+      <section class="hero" aria-label="Introduction">
+        <h1>Andrey Krasavin</h1>
+        <p class="hero-role">Front-End Developer &amp; UI Engineer · Berlin</p>
+      </section>
       <article id="About">
         <h2>About me</h2>
         <p>
@@ -41,103 +62,113 @@
           Working Student roles in Berlin.
         </p>
       </article>
+      <article id="Projects">
+        <h2>Projects</h2>
+        <ul class="project-grid">
+          <li class="project">
+            <img
+              src="pics/nexum.webp"
+              alt="Nexum: creating a live Q&amp;A session"
+              width="800"
+              height="487"
+              loading="lazy"
+            />
+            <h3>
+              <a
+                href="https://gitlab.htw-berlin.de/s0592097/weslido"
+                target="_blank"
+                >Nexum</a
+              >
+            </h3>
+            <p>University project, a free-to-use analogue of slido.com.</p>
+            <ul class="tags">
+              <li>Vue.js</li>
+              <li>Tailwind CSS</li>
+              <li>PocketBase</li>
+            </ul>
+            <a
+              class="project-link"
+              href="https://showtime.f4.htw-berlin.de/ss25/bachelor/b5-nexum/"
+              target="_blank"
+              >More about it</a
+            >
+          </li>
+          <li class="project">
+            <img
+              src="pics/dashboard.png"
+              alt="Gamification dashboard for a digital maths platform"
+              width="1355"
+              height="711"
+              loading="lazy"
+            />
+            <h3>Gamification system</h3>
+            <p>For a digital maths platform, my bachelor's thesis.</p>
+            <ul class="tags">
+              <li>Ruby on Rails</li>
+            </ul>
+          </li>
+          <li class="project">
+            <img
+              src="pics/pal-ette.webp"
+              alt="Pal-ette generating a colour palette"
+              width="800"
+              height="394"
+              loading="lazy"
+            />
+            <h3>
+              <a
+                href="https://github.com/selleriekraut/pal-ette"
+                target="_blank"
+                >Pal-ette</a
+              >
+            </h3>
+            <p>Color palette generator.</p>
+            <ul class="tags">
+              <li>React</li>
+              <li>TypeScript</li>
+              <li>Vite</li>
+            </ul>
+          </li>
+          <li class="project">
+            <img
+              src="pics/sb.webp"
+              alt="Superbrot main menu"
+              width="1280"
+              height="720"
+              loading="lazy"
+            />
+            <h3>Superbrot</h3>
+            <p>Main menu design and programming in Unity.</p>
+            <ul class="tags">
+              <li>Unity UI Toolkit</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="project-note">
+          Also: this page (HTML, CSS, JavaScript) and a habit tracker in
+          development<span class="dot">.</span><span class="dot">.</span
+          ><span class="dot">.</span>
+        </p>
+      </article>
       <article id="CV">
         <h2>CV</h2>
         <figure>
           <div class="cv-frame">
-            <img
-              id="cv"
-              src="pics/AndreyKrasavinCV.png"
-              alt="Preview of my CV"
-            />
-            <img class="frame-overlay" src="pics/frame.png" alt="" />
+            <button type="button" class="cv-open" aria-label="Enlarge CV">
+              <img
+                id="cv"
+                src="pics/AndreyKrasavinCV.png"
+                alt="Preview of my CV"
+                width="1654"
+                height="2339"
+              />
+            </button>
+            <img class="frame-overlay" src="pics/frame.webp" alt="" />
           </div>
-          <a href="AndreyKrasavinCV.pdf" target="_blank" download
-            >Click to download</a
+          <a class="button" href="AndreyKrasavinCV.pdf" download
+            >Download CV (PDF)</a
           >
         </figure>
-      </article>
-      <article id="Projects">
-        <h2>Projects</h2>
-        <div class="carousel">
-          <button
-            type="button"
-            class="carousel-arrow carousel-prev"
-            aria-label="Previous project"
-          >
-            &#10094;
-          </button>
-          <div class="carousel-viewport">
-            <ul class="carousel-track">
-              <li class="carousel-slide" id="nexum">
-                <a href="https://nexum.f4.htw-berlin.de" target="_blank"
-                  >Nexum</a
-                >
-                — a university project, free-to-use analogue of slido.com
-                <br />
-                TOOLS: Vue.js + Tailwind CSS + PocketBase
-                <img src="pics/nexum.gif" alt="nexum" title="nexum" />
-                <a
-                  href="https://showtime.f4.htw-berlin.de/ss25/bachelor/b5-nexum/"
-                  target="_blank"
-                  >more about it here</a
-                >
-              </li>
-              <li class="carousel-slide">
-                Gamification system — for a digital maths platform <br />
-                TOOLS: Ruby on Rails
-                <img
-                  src="pics/dashboard.png"
-                  alt="dashboard for a digital maths platform"
-                  title="dashboard for a digital maths platform"
-                />
-              </li>
-              <li class="carousel-slide">
-                Superbrot — main menu design and programming in Unity <br />
-                TOOLS: Unity UI Toolkit
-                <img
-                  id="superbrot"
-                  src="pics/sb.png"
-                  alt="superbrot main menu"
-                  title="superbrot main menu"
-                />
-              </li>
-              <li class="carousel-slide" id="pal-ette">
-                <a
-                  href="https://github.com/selleriekraut/pal-ette"
-                  target="_blank"
-                  >Pal-ette</a
-                >
-                — Color Palette Generator <br />
-                TOOLS: React + TypeScript + Vite
-                <img
-                  src="pics/pal-ette.gif"
-                  alt="pal-ette functions"
-                  title="pal-ette"
-                />
-              </li>
-              <li class="carousel-slide">
-                <a href="index.html">This page</a>
-                <br />
-                TOOLS: HTML + CSS + JavaScript
-              </li>
-              <li class="carousel-slide" id="habit-tracker">
-                Habit Tracker — in development
-              </li>
-              <li class="carousel-slide">
-                more is coming<span class="dot">.</span
-                ><span class="dot">.</span><span class="dot">.</span>
-              </li>
-            </ul>
-          </div>
-          <button
-            type="button"
-            class="carousel-arrow carousel-next"
-            aria-label="Next project"
-          >
-            &#10095;
-          </button>
-        </div>
       </article>
     </main>
     <footer id="Links">
@@ -174,26 +205,37 @@
           </a>
         </li>
         <li>
-          <a
-            href="mailto:krossx6@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="mailto:krossx6@gmail.com">
             <img src="pics/icons8-gmail-logo.svg" alt="Email" width="30" />
           </a>
         </li>
       </ul>
       <figure>
-        <img id="me" src="pics/me.png" alt="me" title="that's a me" />
+        <img
+          id="me"
+          src="pics/me.webp"
+          alt="Photo of the owner of this page"
+          title="that's a me"
+          width="600"
+          height="456"
+          loading="lazy"
+        />
       </figure>
     </footer>
 
-    <!-- Modal for CV viewing -->
-    <div id="cvModal" class="modal">
-      <div class="modal-content">
-        <button class="modal-close">&times;</button>
-        <img id="modalImage" class="modal-image" src="" alt="CV" />
-      </div>
-    </div>
+    <!-- Enlarged CV; Escape and the close button are handled by <dialog> -->
+    <dialog id="cvModal" class="modal" aria-label="CV">
+      <form method="dialog">
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </form>
+      <img
+        class="modal-image"
+        src="pics/AndreyKrasavinCV.png"
+        alt="My CV"
+        width="1654"
+        height="2339"
+        loading="lazy"
+      />
+    </dialog>
   </body>
 </html>
